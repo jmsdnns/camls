@@ -1,0 +1,7 @@
+PKG ppx_deriving
+PKG ppx_deriving.show
+PKG ppx_deriving.eq
+PKG ppx_deriving.ord
+PKG yojson
+PKG ppx_deriving_yojson
+S src
