@@ -1,17 +1,16 @@
-module type Stack = sig
-    type elt
+module type StackElt = sig
+    type t
+end
+
+module StackImpl (X : StackElt) : sig
+    type elt = X.t
     type t
     val create : unit -> t
     val push : elt -> t -> t
     val pop : t -> (elt * t) option
     val peek : t -> elt option
-end
-
-module type StackElt = sig
-    type t
-end
-
-module StackImpl (X : StackElt) : Stack with type elt = X.t = struct
+    end
+  = struct
     type elt = X.t
     type t = X.t list
 
