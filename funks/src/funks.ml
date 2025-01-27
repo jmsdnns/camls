@@ -1,13 +1,19 @@
 module type Stack = sig
-    type 'a t
-    val create : unit -> 'a t
-    val push : 'a -> 'a t -> 'a t
-    val pop : 'a t -> ('a * 'a t) option
-    val peek : 'a t -> 'a option
+    type elt
+    type t
+    val create : unit -> t
+    val push : elt -> t -> t
+    val pop : t -> (elt * t) option
+    val peek : t -> elt option
 end
 
-module StackImpl (X : sig type t end) : Stack with type 'a t = 'a list = struct
-    type 'a t = 'a list
+module type StackElt = sig
+    type t
+end
+
+module StackImpl (X : StackElt) : Stack with type elt = X.t = struct
+    type elt = X.t
+    type t = X.t list
 
     let create () = []
 
@@ -38,3 +44,8 @@ let () =
 
     let stack = StringStack.(create () |> push "meow" |> push "meeeoow" |> push "meeew") in
     print_top StringStack.peek stack;
+
+    (*
+    let stack = IntStack.(create () |> push "meow" |> push "meow" |> push "meow") in
+    print_top IntStack.peek stack;
+    *)
