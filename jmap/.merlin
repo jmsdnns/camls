@@ -1,0 +1,7 @@
+B +threads
+
+PKG lwt
+PKG lwt.unix
+PKG cmdliner
+
+S src
