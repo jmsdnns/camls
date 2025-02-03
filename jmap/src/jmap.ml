@@ -78,13 +78,6 @@ module Cli = struct
       Some all_ports
     with _ -> None
 
-
-  let parse_ports2 input =
-    try
-      let ports = String.split_on_char ',' input in
-      Some (List.map int_of_string ports)
-    with _ -> None
-
   let host = 
     let docv = "HOST" in
     let doc = "The host to scan (default is 127.0.0.1)." in
