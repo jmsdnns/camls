@@ -4,9 +4,9 @@ open Csv
 
 let embedded_csv = "\
 \"Name\",\"Age\",\"City\"
-\"James\",\"25\",\"NYC\"
-\"CCB\",\"26\",\"Philly\"
-\"Malcolm\",\"27\",\"Amsterdam\"
+\"Billy Bob\",\"25\",\"Tennessee\"
+\"Sierra\",\"26\",\"Meowchigan City\"
+\"V\",\"27\",\"Night City\"
 "
 
 let column_name_to_index = [
@@ -24,6 +24,7 @@ let print_it csv =
   in
   print_endline "Headers:";
   List.iter (fun h -> Printf.printf "  - %s\n" h) header;
+  print_endline "";
 
   print_endline "Rows:";
   let get_column_value col_name row =
@@ -33,19 +34,19 @@ let print_it csv =
     with
     | Not_found -> failwith ("Column not found in header: " ^ col_name)
   in
-  List.iter (fun row ->
+  let print_row row =
     let name = get_column_value "Name" row in
     let age = get_column_value "Age" row in
     let city = get_column_value "City" row in
-
-    Printf.printf "  - Name: %s\n  - Age: %s\n  - City: %s\n" name age city
-  ) (List.tl csv) 
+    Printf.printf "  - Name: %s\n  - Age: %s\n  - City: %s\n\n" name age city
+  in
+  List.iter print_row (List.tl csv)
   
 
 (* from file *)
-(*let () =
+let () =
   let csv_file = Csv.load "data/example.csv" in
-  print_it csv_file*)
+  print_it csv_file
 
 (* from memory *)
 let () =
