@@ -15,14 +15,13 @@ let column_name_to_index = [
   ("City", 2);
 ]
 
-let load_csv filename = Csv.load filename
 
 let print_it csv =
+  print_endline "Headers:";
   let header = List.hd csv in
   let header_index_map = 
     List.mapi (fun idx col_name -> (col_name, idx)) header
   in
-  print_endline "Headers:";
   List.iter (fun h -> Printf.printf "  - %s\n" h) header;
   print_endline "";
 
@@ -47,6 +46,7 @@ let print_it csv =
 let () =
   let csv_file = Csv.load "data/example.csv" in
   print_it csv_file
+
 
 (* from memory *)
 let () =
