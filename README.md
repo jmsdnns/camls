@@ -12,3 +12,4 @@ This project is where I store the projects I build while learning to Ocaml.
 - [JSON](doingjson/): Uses the yojson module to read and write JSON.
 - [DBs with sqlite](whatevdb/): Reads and writes from sqlite. Even stores json in it.
 - [Functors](funks/): Examples of functors.
+- [Polyvariants](polyvariants/): Examples of a flexible approach to errors and exceptions through polyvariants
